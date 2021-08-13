@@ -1,14 +1,61 @@
-import React from "react";
+import React, { useRef } from "react";
+import { useHistory } from "react-router-dom";
 import styles from "./header.module.css";
 
-const Header = (props) => (
-  <div className={styles.header}>
-    <img src="./imgs/logo.png" alt="logo" className={styles.logo_img} />
-    <h1 className={styles.head_title}>Kakao Book</h1>
+const Header = ({ search }) => {
+  const history = useHistory();
+  const inputRef = useRef();
 
-    <input type="text" className={styles.search_bar} />
-    <button className={styles.search_btn}>검색</button>
-  </div>
-);
+  const goToLogin = () => {
+    history.push("/login");
+  };
+
+  const goToHome = () => {
+    history.push("/");
+  };
+
+  const searchEnter = (event) => {
+    if (event.key === "Enter") {
+      searchResult();
+    }
+  };
+
+  const searchClick = () => {
+    searchResult();
+  };
+
+  const searchResult = () => {
+    const inputText = inputRef.current.value;
+    search(inputText);
+  };
+
+  return (
+    <header className={styles.header}>
+      <div className={styles.logo} onClick={goToHome}>
+        <img src="./imgs/logo.png" alt="logo" className={styles.logo_img} />
+        <h1 className={styles.head_title}>Kakao Book</h1>
+      </div>
+
+      <div className={styles.search}>
+        <input
+          ref={inputRef}
+          type="text"
+          className={styles.search_bar}
+          onKeyPress={searchEnter}
+        />
+        <button className={styles.search_btn} onClick={searchClick}>
+          검색
+        </button>
+      </div>
+
+      <div className={styles.sign_area}>
+        <span className={styles.login} onClick={goToLogin}>
+          로그인
+        </span>
+        <span className={styles.logout}>로그아웃</span>
+      </div>
+    </header>
+  );
+};
 
 export default Header;

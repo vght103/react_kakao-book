@@ -1,22 +1,39 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import styles from "./books_item.module.css";
 
-const BooksItem = ({ book }) => {
-  // const bookList = book;
+const BooksItem = ({ book, clickBook }) => {
+  const history = useHistory();
 
-  // console.log(bookList.title);
+  console.log(clickBook);
+
+  const goToBookInfo = () => {
+    history.push("/book-info");
+    clickBook(book);
+    console.log(clickBook);
+  };
 
   return (
-    <li className={styles.book_list}>
+    <li className={styles.book_list} onClick={goToBookInfo}>
       <div className={styles.book_item}>
-        <img src={book.thumbnail} alt="" className={styles.book_img} />
+        <img
+          src={book.thumbnail}
+          alt={book.thumbnail}
+          className={styles.book_img}
+        />
 
         <div className={styles.book_info}>
-          <h3 className={styles.title}>책 제목 : {book.title}</h3>
-          <p className={styles.authors}>저자 : {book.authors}</p>
+          <h3 className={styles.title}> {book.title}</h3>
           <div>
-            <p className={styles.price}>정상가 : {book.price} 원</p>
-            <p className={styles.sale_price}>할인가 : {book.sale_price} 원</p>
+            <div className={styles.price}>
+              <span>정상가</span>
+              <span> {book.price} 원</span>
+            </div>
+
+            <div className={styles.sale_price}>
+              <span>판매가</span>
+              <span> {book.sale_price} 원</span>
+            </div>
           </div>
         </div>
       </div>

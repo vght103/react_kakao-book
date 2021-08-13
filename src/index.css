@@ -18,3 +18,12 @@ code {
   margin: 0;
   padding: 0;
 }
+
+.app {
+  width: 1200px;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+}

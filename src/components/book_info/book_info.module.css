@@ -1,0 +1,49 @@
+.book_info_wrap {
+  width: 710px;
+  margin: 0 auto;
+}
+
+.book_info {
+  display: flex;
+  padding-bottom: 3em;
+  border-bottom: 1px solid lightgray;
+}
+
+.book_img {
+  width: 200px;
+  margin-right: 3em;
+}
+
+.title {
+  margin-bottom: 1em;
+}
+
+.authors::after {
+  content: "/";
+  padding: 0 0.5em;
+}
+
+.dl {
+  display: flex;
+  margin-bottom: 1em;
+}
+
+.dl > dt::after {
+  content: ":";
+  padding: 0.5em;
+}
+
+.price {
+  font-size: 1.1rem;
+  margin: 3em 0 1em;
+}
+.sale_price {
+  font-size: 1.2rem;
+  color: red;
+  font-weight: 700;
+}
+
+.contents {
+  margin-top: 3em;
+  line-height: 2em;
+}
