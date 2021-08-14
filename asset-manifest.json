@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/react_kakao-book/static/css/main.fc15209e.chunk.css",
-    "main.js": "/react_kakao-book/static/js/main.2239c2f3.chunk.js",
-    "main.js.map": "/react_kakao-book/static/js/main.2239c2f3.chunk.js.map",
+    "main.css": "/react_kakao-book/static/css/main.858804dc.chunk.css",
+    "main.js": "/react_kakao-book/static/js/main.0c71889e.chunk.js",
+    "main.js.map": "/react_kakao-book/static/js/main.0c71889e.chunk.js.map",
     "runtime-main.js": "/react_kakao-book/static/js/runtime-main.17be88f4.js",
     "runtime-main.js.map": "/react_kakao-book/static/js/runtime-main.17be88f4.js.map",
     "static/js/2.a030d43e.chunk.js": "/react_kakao-book/static/js/2.a030d43e.chunk.js",
     "static/js/2.a030d43e.chunk.js.map": "/react_kakao-book/static/js/2.a030d43e.chunk.js.map",
     "index.html": "/react_kakao-book/index.html",
-    "static/css/main.fc15209e.chunk.css.map": "/react_kakao-book/static/css/main.fc15209e.chunk.css.map",
+    "static/css/main.858804dc.chunk.css.map": "/react_kakao-book/static/css/main.858804dc.chunk.css.map",
     "static/js/2.a030d43e.chunk.js.LICENSE.txt": "/react_kakao-book/static/js/2.a030d43e.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.17be88f4.js",
     "static/js/2.a030d43e.chunk.js",
-    "static/css/main.fc15209e.chunk.css",
-    "static/js/main.2239c2f3.chunk.js"
+    "static/css/main.858804dc.chunk.css",
+    "static/js/main.0c71889e.chunk.js"
   ]
 }
