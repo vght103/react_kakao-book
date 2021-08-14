@@ -3,6 +3,7 @@ class KakaoService {
     this.key = key;
   }
 
+  // 첫 페이지 리스트 보여주는 api
   async showBookList() {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", `KakaoAK ${this.key}`);
@@ -25,6 +26,7 @@ class KakaoService {
     }
   }
 
+  // 검색시 api
   async search(query) {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", `KakaoAK ${this.key}`);
@@ -41,11 +43,27 @@ class KakaoService {
     );
     const result_1 = await response.json();
     return result_1.documents;
-    // .then((result) =>
-    //   result.documents.map((book) => ({ ...book, id: book.isbn }))
-    // );
+  }
 
-    // .catch((error) => console.log("error", error))
+  // 카카오 인가코드 받기
+  kakaoGetCode() {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", `KakaoAK ${this.key}`);
+    myHeaders.append("Cookie", "_kadu=dYfFK9kj6OQ-0x3p_1628919829998");
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch(
+      `https://kauth.kakao.com/oauth/authorize?client_id$=${this.key}&redirect_uri=http://localhost:3000/oauth&response_type=code&key$=${this.key}`,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
   }
 }
 

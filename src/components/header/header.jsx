@@ -32,7 +32,10 @@ const Header = ({ search }) => {
   return (
     <header className={styles.header}>
       <div className={styles.logo} onClick={goToHome}>
-        <img src="./imgs/logo.png" alt="logo" className={styles.logo_img} />
+        <img
+          src={process.env.PUBLIC_URL + "/imgs/logo.png"}
+          className={styles.logo_img}
+        />
         <h1 className={styles.head_title}>Kakao Book</h1>
       </div>
 
@@ -49,10 +52,16 @@ const Header = ({ search }) => {
       </div>
 
       <div className={styles.sign_area}>
-        <span className={styles.login} onClick={goToLogin}>
-          로그인
-        </span>
-        <span className={styles.logout}>로그아웃</span>
+        <img
+          src={process.env.PUBLIC_URL + "/imgs/kakao_login.png"}
+          alt="카카오톡 로그인"
+          className={styles.login}
+          onClick={goToLogin}
+        />
+        {/* <span className={styles.login} onClick={goToLogin}>
+          카카오톡 로그인
+        </span> */}
+        {/* <span className={styles.logout}>로그아웃</span> */}
       </div>
     </header>
   );

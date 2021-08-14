@@ -4,7 +4,7 @@ import styles from "./app.module.css";
 import BooksList from "./components/books_list/books_list";
 import BookInfo from "./components/book_info/book_info";
 import Header from "./components/header/header";
-import SignUp from "./components/sign_up/sign_up";
+import KakaoLogin from "./components/kakao_login/kakao_login";
 
 function App({ kakaoService }) {
   // 타이머를 만들어보자
@@ -23,6 +23,10 @@ function App({ kakaoService }) {
       .then((books) => setBooks(books));
   };
 
+  const kakaoCode = () => {
+    kakaoService.kakaoGetCode().then(console.log);
+  };
+
   useEffect(() => {
     kakaoService
       .showBookList() //
@@ -38,7 +42,7 @@ function App({ kakaoService }) {
         </Route>
 
         <Route path="/login">
-          <SignUp />
+          <KakaoLogin kakaoCode={kakaoCode} />
         </Route>
 
         {clickedBook && (
