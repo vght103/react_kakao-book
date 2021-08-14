@@ -6,7 +6,7 @@ import BookInfo from "./components/book_info/book_info";
 import Header from "./components/header/header";
 import SignUp from "./components/sign_up/sign_up";
 
-function App() {
+function App({ kakaoService }) {
   // 타이머를 만들어보자
 
   const [books, setBooks] = useState([]);
@@ -18,48 +18,15 @@ function App() {
   };
 
   const search = (query) => {
-    const myHeaders = new Headers();
-    myHeaders.append(
-      "Authorization",
-      "KakaoAK f1ecec569093bda2f73f5de912bd4656"
-    );
-
-    const requestOptions = {
-      method: "GET",
-      headers: myHeaders,
-      redirect: "follow",
-    };
-
-    fetch(
-      `https://dapi.kakao.com/v3/search/book?query=${query}&page=3&size=20&key=f1ecec569093bda2f73f5de912bd4656`,
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => setBooks(result.documents))
-      // .then((result) => console.log(result.documents))
-      .catch((error) => console.log("error", error));
+    kakaoService
+      .search(query) //
+      .then((books) => setBooks(books));
   };
 
   useEffect(() => {
-    const myHeaders = new Headers();
-    myHeaders.append(
-      "Authorization",
-      "KakaoAK f1ecec569093bda2f73f5de912bd4656"
-    );
-
-    const requestOptions = {
-      method: "GET",
-      headers: myHeaders,
-      redirect: "follow",
-    };
-
-    fetch(
-      "https://dapi.kakao.com/v3/search/book?query=여행&page=2&size=20&key=f1ecec569093bda2f73f5de912bd4656",
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => setBooks(result.documents))
-      .catch((error) => console.log("error", error));
+    kakaoService
+      .showBookList() //
+      .then((books) => setBooks(books));
   }, []);
 
   return (
