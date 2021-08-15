@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   /* background-color: #f7e600; */
-  background-color: #eeeccc;
+  background-color: black;
   padding: 1.5em;
   margin-bottom: 1em;
 }
@@ -12,11 +12,13 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  color: white;
 }
 
 .logo_img {
-  width: 80px;
-  height: 80px;
+  width: 40px;
+  height: 40px;
+  margin-right: 0.3em;
 }
 
 .head_title {
@@ -26,6 +28,7 @@
 .search {
   flex: 2;
   text-align: center;
+  display: flex;
 }
 
 .search_bar {

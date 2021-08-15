@@ -2,13 +2,9 @@ import React, { useRef } from "react";
 import { useHistory } from "react-router-dom";
 import styles from "./header.module.css";
 
-const Header = ({ search }) => {
+const Header = ({ search, onLogin }) => {
   const history = useHistory();
   const inputRef = useRef();
-
-  const goToLogin = () => {
-    history.push("/login");
-  };
 
   const goToHome = () => {
     history.push("/");
@@ -18,10 +14,12 @@ const Header = ({ search }) => {
     if (event.key === "Enter") {
       searchResult();
     }
+    goToHome();
   };
 
   const searchClick = () => {
     searchResult();
+    goToHome();
   };
 
   const searchResult = () => {
@@ -35,6 +33,7 @@ const Header = ({ search }) => {
         <img
           src={process.env.PUBLIC_URL + "/imgs/logo.png"}
           className={styles.logo_img}
+          alt="logo"
         />
         <h1 className={styles.head_title}>Kakao Book</h1>
       </div>
@@ -56,12 +55,8 @@ const Header = ({ search }) => {
           src={process.env.PUBLIC_URL + "/imgs/kakao_login.png"}
           alt="카카오톡 로그인"
           className={styles.login}
-          onClick={goToLogin}
+          onClick={onLogin}
         />
-        {/* <span className={styles.login} onClick={goToLogin}>
-          카카오톡 로그인
-        </span> */}
-        {/* <span className={styles.logout}>로그아웃</span> */}
       </div>
     </header>
   );

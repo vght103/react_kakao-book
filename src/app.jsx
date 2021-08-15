@@ -1,17 +1,31 @@
 import { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
-import styles from "./app.module.css";
+// import styles from "./app.module.css";
 import BooksList from "./components/books_list/books_list";
 import BookInfo from "./components/book_info/book_info";
 import Header from "./components/header/header";
-import KakaoLogin from "./components/kakao_login/kakao_login";
+// import KakaoLogin from "./components/kakao_login/kakao_login";
+
+const { Kakao } = window;
 
 function App({ kakaoService }) {
-  // 타이머를 만들어보자
-
   const [books, setBooks] = useState([]);
-
   const [clickedBook, setClickedBook] = useState(null);
+
+  const KakaoLogin = () => {
+    Kakao.Auth.login({
+      success: function (response) {
+        localStorage.setItem("kakao_token");
+        console.log(response);
+      },
+      fail: function (error) {
+        console.log(error);
+      },
+    });
+    // Kakao.Auth.authorize({
+    //   redirectUri: "http://localhost:3000/oauth",
+    // });
+  };
 
   const clickBook = (book) => {
     setClickedBook(book);
@@ -23,10 +37,6 @@ function App({ kakaoService }) {
       .then((books) => setBooks(books));
   };
 
-  const kakaoCode = () => {
-    kakaoService.kakaoGetCode().then(console.log);
-  };
-
   useEffect(() => {
     kakaoService
       .showBookList() //
@@ -35,15 +45,16 @@ function App({ kakaoService }) {
 
   return (
     <>
-      <Header search={search} />
+      <Header search={search} onLogin={KakaoLogin} />
+
       <Switch>
         <Route exact path="/">
           <BooksList books={books} clickBook={clickBook} />
         </Route>
 
-        <Route path="/login">
+        {/* <Route path="/login">
           <KakaoLogin kakaoCode={kakaoCode} />
-        </Route>
+        </Route> */}
 
         {clickedBook && (
           <Route path="/book-info">
