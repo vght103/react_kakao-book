@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   /* background-color: #f7e600; */
-  background-color: black;
+  background-color: #009000;
   padding: 1.5em;
   margin-bottom: 1em;
 }
@@ -29,6 +29,7 @@
   flex: 2;
   text-align: center;
   display: flex;
+  justify-content: center;
 }
 
 .search_bar {

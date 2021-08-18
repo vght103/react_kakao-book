@@ -2,29 +2,36 @@ import React, { useRef } from "react";
 import { useHistory } from "react-router-dom";
 import styles from "./header.module.css";
 
-const Header = ({ search, onLogin }) => {
+const Header = ({ onSearch, onLogin }) => {
   const history = useHistory();
   const inputRef = useRef();
 
   const goToHome = () => {
-    history.push("/");
+    history.push("/react_kakao-book");
+  };
+
+  const goToBookList = () => {
+    history.push("/react_kakao/book-list");
   };
 
   const searchEnter = (event) => {
     if (event.key === "Enter") {
       searchResult();
+      goToBookList();
     }
-    goToHome();
   };
 
   const searchClick = () => {
     searchResult();
-    goToHome();
+    goToBookList();
   };
 
   const searchResult = () => {
     const inputText = inputRef.current.value;
-    search(inputText);
+    if (!inputText) {
+      return;
+    }
+    onSearch(inputText);
   };
 
   return (
@@ -41,7 +48,6 @@ const Header = ({ search, onLogin }) => {
       <div className={styles.search}>
         <input
           ref={inputRef}
-          type="text"
           className={styles.search_bar}
           onKeyPress={searchEnter}
         />
@@ -52,7 +58,7 @@ const Header = ({ search, onLogin }) => {
 
       <div className={styles.sign_area}>
         <img
-          src={process.env.PUBLIC_URL + "/imgs/kakao_login.png"}
+          src={process.env.PUBLIC_URL + "/imgs/kakao_login_small.png"}
           alt="카카오톡 로그인"
           className={styles.login}
           onClick={onLogin}

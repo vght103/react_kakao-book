@@ -40,6 +40,10 @@ const BookInfo = ({ book }) => {
               <dt>판매가</dt>
               <dd>{book.sale_price}원</dd>
             </dl>
+
+            <a href={book.url} target="_blank" className={styles.book_link}>
+              구매하러 가기
+            </a>
           </div>
         </div>
         <p className={styles.contents}>{book.contents}</p>

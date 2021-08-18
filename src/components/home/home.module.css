@@ -1,0 +1,29 @@
+.home {
+  width: 600px;
+  height: 738px;
+  background: url("kakao_img2.png") no-repeat 0 200px;
+  /* background-size: cover; */
+
+  overflow: hidden;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.home > h2 {
+  margin-bottom: 1.5em;
+  font-size: 2.5rem;
+}
+
+.login {
+  cursor: pointer;
+}
+
+.login:hover {
+  transform: scale(1.3);
+  transition: 0.5s ease-in-out;
+}
+
+.login:not(:hover) {
+  transform: scale(1);
+  transition: 0.5s ease-in-out;
+}

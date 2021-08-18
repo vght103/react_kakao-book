@@ -5,8 +5,6 @@ import styles from "./books_item.module.css";
 const BooksItem = ({ book, clickBook }) => {
   const history = useHistory();
 
-  console.log(clickBook);
-
   const goToBookInfo = () => {
     history.push("/book-info");
     clickBook(book);

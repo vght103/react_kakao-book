@@ -43,6 +43,14 @@
   font-weight: 700;
 }
 
+.book_link {
+  background-color: #fef01b;
+  color: black;
+  font-size: 0.8rem;
+  padding: 0.7em;
+  border-radius: 20px;
+}
+
 .contents {
   margin-top: 3em;
   line-height: 2em;

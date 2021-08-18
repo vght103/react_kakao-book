@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
-// import styles from "./app.module.css";
+import styles from "./app.module.css";
 import BooksList from "./components/books_list/books_list";
 import BookInfo from "./components/book_info/book_info";
 import Header from "./components/header/header";
+import Home from "./components/home/home";
 // import KakaoLogin from "./components/kakao_login/kakao_login";
 
 const { Kakao } = window;
@@ -12,6 +13,7 @@ function App({ kakaoService }) {
   const [books, setBooks] = useState([]);
   const [clickedBook, setClickedBook] = useState(null);
 
+  // 카카오 로그인
   const KakaoLogin = () => {
     Kakao.Auth.login({
       success: function (response) {
@@ -22,38 +24,52 @@ function App({ kakaoService }) {
         console.log(error);
       },
     });
-    // Kakao.Auth.authorize({
-    //   redirectUri: "http://localhost:3000/oauth",
-    // });
+    console.log("login");
   };
 
+  Kakao.API.request({
+    url: "/v2/user/me",
+  });
+
+  // 클릭한 책 정보
   const clickBook = (book) => {
     setClickedBook(book);
   };
 
-  const search = (query) => {
+  // 검색한 책 리스트
+  const searchBook = (query) => {
     kakaoService
       .search(query) //
       .then((books) => setBooks(books));
   };
 
   useEffect(() => {
-    kakaoService
-      .showBookList() //
-      .then((books) => setBooks(books));
+    const onScroll = (event) => {
+      const { scrollHeight, scrollTop, clientHeight } =
+        event.target.scrollingElement;
+      console.log("hey");
+      if (scrollTop + clientHeight >= scrollHeight) {
+        searchBook();
+      }
+    };
+    document.addEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <>
-      <Header search={search} onLogin={KakaoLogin} />
+    <div className={styles.app}>
+      <Header onSearch={searchBook} onLogin={KakaoLogin} />
 
       <Switch>
-        <Route exact path="/">
+        <Route exact path="/react_kakao-book">
+          <Home onLogin={KakaoLogin} />
+        </Route>
+
+        <Route path="/react_kakao/book-list">
           <BooksList books={books} clickBook={clickBook} />
         </Route>
 
-        {/* <Route path="/login">
-          <KakaoLogin kakaoCode={kakaoCode} />
+        {/* <Route path="/react_kakao/login">
+          <KakaoLogin />
         </Route> */}
 
         {clickedBook && (
@@ -62,7 +78,7 @@ function App({ kakaoService }) {
           </Route>
         )}
       </Switch>
-    </>
+    </div>
   );
 }
 
